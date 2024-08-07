@@ -1,0 +1,18 @@
+.go-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    border-bottom-right-radius: 10px;
+
+    border-top: none;
+    border-left: none;
+
+    padding: 10px;
+}
+
+.go-back:hover {
+    cursor: pointer;
+
+    background-color: rgb(187, 187, 187);
+}
