@@ -1,25 +1,20 @@
-const model = tf.sequential();
-model.add(tf.layers.dense({ units: 128, inputShape: [3], activation: 'relu' }));
-model.add(tf.layers.dense({ units: 1, activation: 'linear' }));
+const net = new brain.neuralNetwork([{
+    hiddenLayers: [10, 10],
+    activation: 'sigmoid',
+}]);
 
-model.compile({ loss: 'meanSquaredError', optimizer: 'sgd' });
-
-const xs = tf.tensor2d([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
+net.train([
+    {
+        input: {
+            unicode_upper: 'U+0041',
+            unicode_lower: 'U+0061',
+        },
+        output: {
+            letter_upper: 'A',
+            letter_lower: 'a',
+        },
+    },
+    {
+        /* UNDER CONSTRUCTION */
+    }
 ]);
-const ys = tf.tensor2d([
-    [1],
-    [2],
-    [3]
-]);
-
-model.fit(xs, ys, { epochs: 100 }).then(() => {
-    const newData = tf.tensor2d([
-        [10, 20, 30],
-        [40, 50, 60]
-    ]);
-    const predictions = model.predict(newData);
-    console.log(predictions.dataSync());
-});
